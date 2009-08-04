@@ -22,4 +22,4 @@ ARCH_DEFS=${DEFDIR}/${ARCH}.defs
 
 XXX=`pwd`
 
-exec gmake -I${DEFDIR} -I${INCDIR} INITIAL_WD=${XXX} -f $ARCH_DEFS ${1+"$@"} -f GNUmakefile
+exec make -I${DEFDIR} -I${INCDIR} INITIAL_WD=${XXX} -f $ARCH_DEFS ${1+"$@"} -f Makefile

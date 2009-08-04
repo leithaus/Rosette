@@ -44,7 +44,8 @@ extern "C" {
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <netdb.h>
-#include <varargs.h>
+//#include <varargs.h>
+#include <stdarg.h>
 #include <memory.h>
 #if !defined(GCC27X)
 #include <osfcn.h>
