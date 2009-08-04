@@ -1,0 +1,20 @@
+#!/bin/sh
+
+ALL=$@
+for v in $ALL ; do
+  shift 1
+  for w in $@ ; do
+    if [  "$v" = "$w" ] ;
+    then v="" ;
+    fi
+  done
+   ANS="$ANS $v"
+done
+echo $ANS
+
+
+
+   
+
+
+ 

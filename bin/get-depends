@@ -1,0 +1,30 @@
+
+TMP=/tmp/tmpx-${USER}
+echo > ${TMP}
+echo > ${TMP}-3
+for v in *.h ; do echo "/\"$v\"/  {print (\"$v\"); }" >> ${TMP} ; done
+
+for w in *.h ; do
+ cat $w | awk -f ${TMP} > ${TMP}-2
+ echo "/\"$w\"/ {print (\"$w\");"  >> ${TMP}-3 
+   for ww in `cat ${TMP}-2` ; do
+     echo "print (\"$ww\");" >> ${TMP}-3
+   done
+  echo '}' >> ${TMP}-3
+
+done
+
+
+mv ${TMP}-3 ${TMP}
+
+for v in *.cc ; do
+echo $v : | sed -e "s:\.cc:.o:g"  > ${TMP}-1
+cat $v | awk -f ${TMP} >> ${TMP}-1
+listify ` cat ${TMP}-1 `
+done
+
+for v in *.c ; do
+echo $v : | sed -e "s:\.c:.o:g"  > ${TMP}-1
+cat $v | awk -f ${TMP} >> ${TMP}-1
+listify ` cat ${TMP}-1 `
+done

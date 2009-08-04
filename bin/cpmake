@@ -1,0 +1,25 @@
+#!/bin/sh
+#
+# This simple shell script is a front-end
+# to GNU make which is the make utility
+#  used to build Ess components.
+# 
+
+if [ -z "$ESS_SYSDIR" ]; then
+    echo "ESS_SYSDIR not defined in ENVIRONMENT"
+    exit 1
+fi
+
+ARCH=`${ESS_SYSDIR}/bin/carch`
+PATH=${ESS_SYSDIR}/${ARCH}/bin:/usr/local/bin:/usr/bin:/bin
+
+# pathname of Ess makefiles
+DEFDIR=${ESS_SYSDIR}/defs
+INCDIR=${ESS_SYSDIR}/include/mk
+
+# architecture specific make defs
+ARCH_DEFS=${DEFDIR}/${ARCH}.defs
+
+XXX=`pwd`
+
+exec gmake -I${DEFDIR} -I${INCDIR} INITIAL_WD=${XXX} -f $ARCH_DEFS ${1+"$@"} -f GNUmakefile

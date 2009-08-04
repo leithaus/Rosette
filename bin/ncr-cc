@@ -1,0 +1,26 @@
+#!/bin/sh
+
+export CFIL
+export FILES
+export FILE
+export ccC
+export PATH
+
+# we need an absolute path for this:
+ccC=`pwd`/../bin/ncr-cc1
+FILE=
+while [ $# -gt 0 ] ; do
+ case $1 in
+    *.cc)  FILE=`echo $1  | sed -e "s:\.cc:.c:g"` ;  cp $1 ${FILE} ; FILES="${FILES}  ${FILE}" ;;
+    *)  CFIL="${CFIL} $1" ;;
+ esac
+ shift 1
+done
+
+
+CC -I/usr/include/CC  ${CFIL} ${FILES}
+for v in ${FILES} ; do rm -f $v ; done
+
+
+
+

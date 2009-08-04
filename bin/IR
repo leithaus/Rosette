@@ -1,0 +1,3 @@
+${ESS_SYSDIR}/`${ESS_SYSDIR}/bin/carch`/bin/ess.image \
+-comm -tss -remote $1 -tid $2 -tssport $3 \
+</dev/null 1>/dev/null 2>/dev/null &

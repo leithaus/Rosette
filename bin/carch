@@ -1,0 +1,35 @@
+#!/bin/sh
+
+# Ess 'arch' command since not 
+# all machines have arch, but most
+# machines have uname so we figure
+# it out from that, and we then
+# use our own normalization of names
+
+case `uname -m` in
+
+    sun3*) ARCH=sun3
+	   ;;
+
+    sun4*) ARCH=sun4
+	   ;;
+
+    3433|i386*|i486*)  ARCH=ncr
+	   ;;
+
+    RISC)  ARCH=dec
+	   ;;
+
+    9000*) 
+	   ARCH=hppa
+	   ;;
+
+    IP*)
+	   ARCH=sgi
+	   ;;
+
+    *)	   ARCH=unknown
+	   ;;
+esac
+
+echo $ARCH
