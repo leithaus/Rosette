@@ -62,7 +62,7 @@ AbstractForeignFunction::AbstractForeignFunction (Ob* Cname,
       Cname(Cname),
       argConverters(argConverters),
       rsltConverter(rsltConverter),
-      Caddr(FIXNUM((int)Caddr))
+      Caddr(FIXNUM((intptr_t)Caddr))
 {
   AbstractForeignFunction::updateCnt();
 }
@@ -76,7 +76,7 @@ AbstractForeignFunction::AbstractForeignFunction (Ob* Cname,
       Cname(Cname),
       argConverters(argConverters),
       rsltConverter(rsltConverter),
-      Caddr(FIXNUM((int)Caddr))
+      Caddr(FIXNUM((intptr_t)Caddr))
 {
   AbstractForeignFunction::updateCnt();
 }
@@ -746,7 +746,7 @@ DEF("unix-resolve",unixResolve, 1, 1)
   if (addr == 0)
     return ABSENT;
   
-  return FIXNUM((int)addr);
+  return FIXNUM((intptr_t)addr);
 }
 
 
