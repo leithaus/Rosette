@@ -25,3 +25,10 @@
 all:
 	$(MAKE) -C src
 	$(MAKE) -C rbl
+
+
+clean:
+	rm -f src/*.o
+	rm -f bin/boot-ess
+
+.PHONY: all clean
