@@ -1,4 +1,4 @@
-# Mode: -*- TEXT -*-
+# Mode: -*- MAKEFILE -*-
 # @BC
 #		                Copyright (c) 1996
 #	                      by Rosette WebWorks Inc.

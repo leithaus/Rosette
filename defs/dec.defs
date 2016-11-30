@@ -1,4 +1,4 @@
-# Mode: -*- TEXT -*-
+# Mode: -*- MAKEFILE -*-
 # @BC
 #		                Copyright (c) 1993
 #	    by Microelectronics and Computer Technology Corporation (MCC)
