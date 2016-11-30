@@ -163,7 +163,7 @@ DynamicLoader::DynamicLoader (const char* initial_relocFile)
      */
 
     loaderFile = LOADER;
-    LdTemplate = "%s -N -A %%s -T %%lx %s %s -o %%s %s -lc";
+    LdTemplate = "%s -N -A %%s -T %%lx %s %s -o %%s %s -lc -m32";
 
     modified = 0;
     uid = geteuid();
