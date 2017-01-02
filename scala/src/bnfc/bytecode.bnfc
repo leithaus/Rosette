@@ -1,0 +1,129 @@
+-- -*- mode: Haskell;-*- 
+-- Filename:    bytecode.bnfc 
+-- Authors:     luciusmeredith                                                    
+-- Creation:    Sun Jan  1 13:42:10 2017 
+-- Copyright:   Not supplied 
+-- Description: A BNFC grammar for description
+-- ------------------------------------------------------------------------
+
+OpCodeSeq . Instructions ::= [OpCode] ;
+
+--    opHalt		= 0x00,		/* Format 0 */
+OpHalt .    OpCode	::= "0x00";
+--    opPush		= 0x01,		/* Format 0 */
+OpPush .    OpCode	::= "0x01";
+--    opPop		= 0x02,		/* Format 0 */
+OpPop .    OpCode	::= "0x02";
+--    opNargs		= 0x03,		/* Format 0 */
+OpNargs .    OpCode	::= "0x03";
+--    opAlloc		= 0x04,		/* Format 0 */
+OpAlloc .    OpCode	::= "0x04";
+--    opPushAlloc		= 0x05,		/* Format 0 */
+OpPushAlloc .    OpCode	::= "0x05";
+--    opExtend		= 0x06,		/* Format 0 */
+OpExtend .    OpCode	::= "0x06";
+--
+
+OpOutstanding .   OpCode::= "0x08";
+--    opFork		= 0x0c,		/* Format 6 */
+OpFork .    OpCode	::= "0x0c";
+--
+
+OpXmitTag .    OpCode	::= "0x10";
+--    opXmitArg		= 0x14,		/* Format 4 */
+OpXmitArg .    OpCode	::= "0x14";
+--    opXmitReg		= 0x18,		/* Format 4 */
+OpXmitReg .    OpCode	::= "0x18";
+--    opXmit		= 0x1c,		/* Format 5 */
+OpXmit .    OpCode	::= "0x1c";
+--    opXmitTagXtnd	= 0x20,		/* Format 5 + 16-bit extension */
+OpXmitTagXtnd .    OpCode::= "0x20";
+--    opXmitArgXtnd	= 0x24,		/* Format 5 + 16-bit extension */
+OpXmitArgXtnd .    OpCode::= "0x24";
+--    opXmitRegXtnd	= 0x28,		/* Format 5 + 16-bit extension */
+OpXmitRegXtnd .    OpCode::= "0x28";
+--
+
+OpSend .    OpCode	::= "0x2c";
+--
+
+OpApplyPrimTag .    OpCode::= "0x30";
+--    opApplyPrimArg	= 0x34,
+OpApplyPrimArg .    OpCode::= "0x34";
+--    opApplyPrimReg	= 0x38,
+OpApplyPrimReg .    OpCode::= "0x38";
+--    opApplyCmd		= 0x3c,
+OpApplyCmd .    OpCode	::= "0x3c";
+--
+
+OpRtnTag .    OpCode	::= "0x40";
+--    opRtnArg		= 0x44,
+OpRtnArg .    OpCode	::= "0x44";
+--    opRtnReg		= 0x48,
+OpRtnReg .    OpCode	::= "0x48";
+--    opRtn		= 0x4c,
+OpRtn .    OpCode	::= "0x4c";
+--
+
+OpUpcallRtn .    OpCode	::= "0x50";
+--    opUpcallResume	= 0x54,
+OpUpcallResume .    OpCode::= "0x54";
+--    opNxt		= 0x55,
+OpNxt .    OpCode	::= "0x55";
+--
+
+OpJmp .    OpCode	::= "0x60";
+--    opJmpFalse		= 0x64,
+OpJmpFalse .    OpCode	::= "0x64";
+--    opJmpCut		= 0x68,
+OpJmpCut .    OpCode	::= "0x68";
+--
+
+OpLookupToArg .    OpCode::= "0x70";
+--    opLookupToReg	= 0x80,
+OpLookupToReg .    OpCode::= "0x80";
+--
+
+OpXferLexToArg .    OpCode::= "0x90";
+--    opXferLexToReg	= 0xa0,
+OpXferLexToReg .    OpCode::= "0xa0";
+--
+
+OpXferGlobalToArg .    OpCode::= "0xb0";
+--    opXferGlobalToReg	= 0xb1,
+OpXferGlobalToReg .    OpCode::= "0xb1";
+--    opXferArgToArg	= 0xb2,
+OpXferArgToArg .    OpCode::= "0xb2";
+--
+
+OpXferRsltToArg .    OpCode::= "0xb4";
+--    opXferArgToRslt	= 0xb5,
+OpXferArgToRslt .    OpCode::= "0xb5";
+--    opXferRsltToReg	= 0xb6,
+OpXferRsltToReg .    OpCode::= "0xb6";
+--    opXferRegToRslt	= 0xb7,
+OpXferRegToRslt .    OpCode::= "0xb7";
+--    opXferRsltToDest	= 0xb8,
+OpXferRsltToDest .    OpCode::= "0xb8";
+--    opXferSrcToRslt	= 0xb9,
+OpXferSrcToRslt .    OpCode::= "0xb9";
+--
+
+OpIndLitToArg .    OpCode::= "0xba";
+--    opIndLitToReg	= 0xbb,
+OpIndLitToReg .    OpCode::= "0xbb";
+--    opIndLitToRslt	= 0xbc,
+OpIndLitToRslt .    OpCode::= "0xbc";
+--
+
+OpImmediateLitToArg .    OpCode::= "0xc0";
+--
+
+OpImmediateLitToReg .    OpCode::= "0xd0";
+
+[]                  . [OpCode]      ::=                                           ;
+(: [])              . [OpCode]      ::= OpCode                                    ;
+(:)                 . [OpCode]      ::= OpCode ":" [OpCode]                       ;
+
+comment "//"      ;
+comment "/*" "*/" ;
